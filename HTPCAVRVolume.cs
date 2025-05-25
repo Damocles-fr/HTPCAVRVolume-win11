@@ -38,17 +38,7 @@ namespace HTPCAVRVolume
             globalHook.VolumeUpPressed += (s, args) => btnVolUp.PerformClick();
             globalHook.VolumeDownPressed += (s, args) => btnVolDown.PerformClick();
             globalHook.VolumeMutePressed += (s, args) => btnToggleMute.PerformClick();
-
-            // Tu peux commenter ou supprimer les lignes suivantes
-            // hookVolUp = new KeyboardHook(Constants.NOMOD, Keys.VolumeUp, this);
-            // hookVolDown = new KeyboardHook(Constants.NOMOD, Keys.VolumeDown, this);
-            // hookToggleMute = new KeyboardHook(Constants.NOMOD, Keys.VolumeMute, this);
-
-            // hookVolUp.Register();
-            // hookVolDown.Register();
-            // hookToggleMute.Register();
-        }
-
+        }    // Use globalHook instead
 
         private void LoadDevice()
         {
@@ -141,14 +131,14 @@ namespace HTPCAVRVolume
             if (WindowState == FormWindowState.Minimized)
             {
                 notifyIcon.Visible = true;
-                ShowInTaskbar = false;  // fenêtre cachée dans la barre des tâches, mais active
+                ShowInTaskbar = false;  // window hidden in the taskbar, but still active.
             }
             else if (WindowState == FormWindowState.Normal)
             {
                 notifyIcon.Visible = false;
                 ShowInTaskbar = true;
             }
-        }  // <-- cette accolade manquante ferme la méthode Resize
+        }
 
         private void HTPCAVRVolume_Shown(object sender, EventArgs e)
         {
