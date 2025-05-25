@@ -17,7 +17,7 @@ namespace HTPCAVRVolume
         public event EventHandler VolumeDownPressed;
         public event EventHandler VolumeMutePressed;
 
-        // Déclaration du délégué
+        // Delegate declaration
         private delegate IntPtr LowLevelKeyboardProc(int nCode, IntPtr wParam, IntPtr lParam);
 
         public GlobalKeyboardHook()
@@ -44,15 +44,15 @@ namespace HTPCAVRVolume
                 {
                     case Keys.VolumeUp:
                         VolumeUpPressed?.Invoke(this, EventArgs.Empty);
-                        return (IntPtr)1;  // Bloque la touche, ne la propage PAS à Windows
+                        return (IntPtr)1;  // // Prevents the key from being passed to Windows
 
                     case Keys.VolumeDown:
                         VolumeDownPressed?.Invoke(this, EventArgs.Empty);
-                        return (IntPtr)1;  // Bloque la touche
+                        return (IntPtr)1;  // Block the key
 
                     case Keys.VolumeMute:
                         VolumeMutePressed?.Invoke(this, EventArgs.Empty);
-                        return (IntPtr)1;  // Bloque la touche
+                        return (IntPtr)1;  // Block the key
                 }
             }
             return CallNextHookEx(_hookID, nCode, wParam, lParam);
