@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 using System.IO;
@@ -10,6 +10,8 @@ namespace HTPCAVRVolume
     {
         private readonly string config = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + "\\HTPCAVRVolumeConfig.txt";
         private bool _muted = false;
+        private GlobalKeyboardHook globalHook;
+
 
         private KeyboardHook hookVolUp;
         private KeyboardHook hookVolDown;
@@ -31,14 +33,22 @@ namespace HTPCAVRVolume
         {
             LoadDevice();
 
-            hookVolUp = new KeyboardHook(Constants.NOMOD, Keys.VolumeUp, this);
-            hookVolDown = new KeyboardHook(Constants.NOMOD, Keys.VolumeDown, this);
-            hookToggleMute = new KeyboardHook(Constants.NOMOD, Keys.VolumeMute, this);
+            globalHook = new GlobalKeyboardHook();
 
-            hookVolUp.Register();
-            hookVolDown.Register();
-            hookToggleMute.Register();
+            globalHook.VolumeUpPressed += (s, args) => btnVolUp.PerformClick();
+            globalHook.VolumeDownPressed += (s, args) => btnVolDown.PerformClick();
+            globalHook.VolumeMutePressed += (s, args) => btnToggleMute.PerformClick();
+
+            // Tu peux commenter ou supprimer les lignes suivantes
+            // hookVolUp = new KeyboardHook(Constants.NOMOD, Keys.VolumeUp, this);
+            // hookVolDown = new KeyboardHook(Constants.NOMOD, Keys.VolumeDown, this);
+            // hookToggleMute = new KeyboardHook(Constants.NOMOD, Keys.VolumeMute, this);
+
+            // hookVolUp.Register();
+            // hookVolDown.Register();
+            // hookToggleMute.Register();
         }
+
 
         private void LoadDevice()
         {
@@ -117,9 +127,7 @@ namespace HTPCAVRVolume
 
         private void HTPCAVRVolume_FormClosed(object sender, FormClosedEventArgs e)
         {
-            hookVolUp.Unregister();
-            hookVolDown.Unregister();
-            hookToggleMute.Unregister();
+            globalHook?.Dispose();
         }
 
         private void NotifyIcon_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -130,17 +138,17 @@ namespace HTPCAVRVolume
 
         private void HTPCAVRVolume_Resize(object sender, EventArgs e)
         {
-            if (FormWindowState.Minimized == WindowState)
+            if (WindowState == FormWindowState.Minimized)
             {
                 notifyIcon.Visible = true;
-                Hide();
+                ShowInTaskbar = false;  // fenêtre cachée dans la barre des tâches, mais active
             }
-
-            else if (FormWindowState.Normal == WindowState)
+            else if (WindowState == FormWindowState.Normal)
             {
                 notifyIcon.Visible = false;
+                ShowInTaskbar = true;
             }
-        }
+        }  // <-- cette accolade manquante ferme la méthode Resize
 
         private void HTPCAVRVolume_Shown(object sender, EventArgs e)
         {
