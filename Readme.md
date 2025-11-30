@@ -1,4 +1,4 @@
-# HTPCAVRVolume functional with Windows 11 24H2
+# HTPCAVRVolume functional with Windows 11 24H2 and above
 
 This is a simple program that captures your HTPC's volume control buttons and instead sends the commands directly to your
 home theater AVR.
