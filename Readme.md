@@ -33,9 +33,9 @@ Simply download the latest release, place the program .exe wherever you like, an
 After running it, select your AVR from the dropown and enter it's network IP address, then hit Save.
 
 You can also add the program, or a shortcut to it to your HTPC's startup folder so that the program automatically starts with your PC.
-To access your startup folder press Win+R and type shell:Startup
+To access your startup folder press Win+R and type `shell:Startup`
 
 ### Optional experimental :
-VolumUp.exe and VolumUp.exe in the project files are optional .exe shortcuts than can be placed directly as buttons in the taskbar.
-Probably needs HTPCAVRVolume.exe and HTPCAVRVolumeConfig.txt to be located in C:\ProgramData\HTPCAVRVolume.v1.1
-Honestly I don't remember when and how I built that, maybe with AutoHotkey idk.
+`VolumUp.exe` and `VolumeDown.exe` in the project files are optional .exe shortcuts than can be placed directly as buttons in the taskbar.
+Probably needs HTPCAVRVolume.exe and HTPCAVRVolumeConfig.txt to be located in `C:\ProgramData\HTPCAVRVolume.v1.1`
+Honestly I don't remember how and when I built those, maybe with AutoHotkey idk.
