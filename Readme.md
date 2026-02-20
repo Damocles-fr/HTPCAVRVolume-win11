@@ -24,7 +24,7 @@ The only supported controls are:
 
 Support for other AVRs could be pretty easily added to the existing code.
 
-Original autor note [nicko88](https://github.com/nicko88) Please contact me if you would like me to support another AVR, especially if it's one already supported by [HTWebRemote](https://github.com/nicko88/HTWebRemote)
+Original autor note from [nicko88](https://github.com/nicko88) : Please contact me if you would like me to support another AVR, especially if it's one already supported by [HTWebRemote](https://github.com/nicko88/HTWebRemote)
 
 ### How To Use
 
